@@ -1,0 +1,80 @@
+﻿@model IEnumerable<COTS_Inventory.Models.Test>
+
+@{
+    ViewData["Title"] = "Test Results";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    @Html.ActionLink("Create", "Create", "Tests", new object { }, new { @class = "btn btn-primary" })
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SP_Id)
+                </th>
+                <th>
+                    Test Plan
+                </th>
+                <th>
+                    WE Document
+                </th>
+                <th>
+                    Test Date
+                </th>
+                <th>
+                    Result
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Products" asp-route-id="@item.SP_Id">@Html.DisplayFor(modelItem => item.SP_Id)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TestPlan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WEDocument)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TestDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PassResult)
+                    </td>
+                    <td style="border: 2px solid darkgray; border-radius: 6px;
+            display: flex; justify-content: space-evenly; background: lightgray;
+            font-weight: bold;">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

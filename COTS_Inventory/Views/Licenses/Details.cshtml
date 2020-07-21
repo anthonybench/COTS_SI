@@ -1,0 +1,108 @@
+﻿@model COTS_Inventory.Models.License
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Licenses</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SP_Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SP_Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Servicer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Servicer)
+        </dd>
+        <dt class="col-sm-2">
+            Number of Installs
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumOfInstalls)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+        <dt class="col-sm-2">
+            Expiration Date
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExpireDate)
+        </dd>
+        <dt class="col-sm-2">
+            Purchase Order Number
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PurchaseOrderNum)
+        </dd>
+        <dt class="col-sm-2">
+            MR Number
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MRNumber)
+        </dd>
+        <dt class="col-sm-2">
+            Purchase Agent
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PurchaseAgent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Owner)
+        </dd>
+        <dt class="col-sm-2">
+            Owner Email
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OwnerEmail)
+        </dd>
+        <dt class="col-sm-2">
+            Activation Website
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ActivationWebsite)
+        </dd>
+        <dt class="col-sm-2">
+            Contract Number
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContractNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

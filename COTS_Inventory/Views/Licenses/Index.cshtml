@@ -1,0 +1,134 @@
+﻿@model IEnumerable<COTS_Inventory.Models.License>
+
+@{
+    ViewData["Title"] = "Software Licenses";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    @Html.ActionLink("Create", "Create", "Licenses", new object { }, new { @class = "btn btn-primary" })
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SP_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Servicer)
+                </th>
+                <th>
+                    Number of Installs
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cost)
+                </th>
+                <th>
+                    Expiration Date
+                </th>
+                <th>
+                    Purchase Order Number
+                </th>
+                <th>
+                    MR Number
+                </th>
+                <th>
+                    Purchase Agent
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Owner)
+                </th>
+                <th>
+                    Owner Email
+                </th>
+                <th>
+                    Activation Website
+                </th>
+                <th>
+                    Contract Number
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Products" asp-route-id="@item.SP_Id">@Html.DisplayFor(modelItem => item.SP_Id)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Servicer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumOfInstalls)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpireDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PurchaseOrderNum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MRNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PurchaseAgent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Owner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OwnerEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActivationWebsite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContractNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td style="border: 2px solid darkgray; border-radius: 6px;
+        display: flex; justify-content: space-evenly; background: lightgray;
+        font-weight: bold;">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

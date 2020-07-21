@@ -1,0 +1,105 @@
+﻿@model COTS_Inventory.Models.License
+
+@{
+    ViewData["Title"] = "ADD";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h4>Licenses</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SP_Id" class="control-label">Product</label>
+                <select asp-for="SP_Id" asp-items="(SelectList)ViewBag.ProductSelectList"></select>
+                <span asp-validation-for="SP_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Servicer" class="control-label"></label>
+                <input asp-for="Servicer" class="form-control" />
+                <span asp-validation-for="Servicer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumOfInstalls" class="control-label">Number of Installs</label>
+                <input asp-for="NumOfInstalls" class="form-control" />
+                <span asp-validation-for="NumOfInstalls" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost" class="control-label"></label>
+                <input asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpireDate" class="control-label">Expiration Date</label>
+                <input asp-for="ExpireDate" class="form-control" />
+                <span asp-validation-for="ExpireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseOrderNum" class="control-label">Purchase Order Number</label>
+                <input asp-for="PurchaseOrderNum" class="form-control" />
+                <span asp-validation-for="PurchaseOrderNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MRNumber" class="control-label">MR Number</label>
+                <input asp-for="MRNumber" class="form-control" />
+                <span asp-validation-for="MRNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseAgent" class="control-label">Purchase Agent</label>
+                <input asp-for="PurchaseAgent" class="form-control" />
+                <span asp-validation-for="PurchaseAgent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Owner" class="control-label"></label>
+                <input asp-for="Owner" class="form-control" />
+                <span asp-validation-for="Owner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OwnerEmail" class="control-label">Owner Email</label>
+                <input asp-for="OwnerEmail" class="form-control" />
+                <span asp-validation-for="OwnerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActivationWebsite" class="control-label">Activation Website</label>
+                <input asp-for="ActivationWebsite" class="form-control" />
+                <span asp-validation-for="ActivationWebsite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractNumber" class="control-label">Contract Number</label>
+                <input asp-for="ContractNumber" class="form-control" />
+                <span asp-validation-for="ContractNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

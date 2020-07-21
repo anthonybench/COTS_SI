@@ -1,0 +1,92 @@
+﻿@model IEnumerable<COTS_Inventory.Models.Product>
+
+@{
+    ViewData["Title"] = "Software Products";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    @Html.ActionLink("Create", "Create", "Products", new object { }, new { @class = "btn btn-primary" })
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SV_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Version)
+                </th>
+                <th>
+                    Vendor Category Number
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    NPR Classification
+                </th>
+                <th>
+                    Safety Critical
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Vendors" asp-route-id="@item.SV_Id">@Html.DisplayFor(modelItem => item.SV_Id)</a> 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Version)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VendorCatNum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NPRClassification)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SafetyCriticalDetermine)
+                    </td>
+                    <td style="border: 2px solid darkgray; border-radius: 6px;
+            display: flex; justify-content: space-evenly; background: lightgray;
+            font-weight: bold;">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

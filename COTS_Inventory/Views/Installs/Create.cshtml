@@ -1,0 +1,55 @@
+﻿@model COTS_Inventory.Models.Install
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h4>Installations</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CM_Id" class="control-label">Client Machine</label>
+                <select asp-for="CM_Id" asp-items="(SelectList)ViewBag.ClientMachineSelectList"></select>
+                <span asp-validation-for="CM_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SL_Id" class="control-label">Software License</label>
+                <select asp-for="SL_Id" asp-items="(SelectList)ViewBag.LicenseSelectList"></select>
+                <span asp-validation-for="SL_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SerialNumber" class="control-label">Serial Number</label>
+                <input asp-for="SerialNumber" class="form-control" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

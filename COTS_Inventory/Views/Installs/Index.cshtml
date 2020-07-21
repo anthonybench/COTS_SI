@@ -1,0 +1,74 @@
+﻿@model IEnumerable<COTS_Inventory.Models.Install>
+
+@{
+    ViewData["Title"] = "Software Installations";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    @Html.ActionLink("Create", "Create", "Installs", new object { }, new { @class = "btn btn-primary" })
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CM_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SL_Id)
+                </th>
+                <th>
+                    Serial Number
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="ClientMachines" asp-route-id="@item.CM_Id">@Html.DisplayFor(modelItem => item.CM_Id)</a>
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Licenses" asp-route-id="@item.SL_Id">@Html.DisplayFor(modelItem => item.SL_Id)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SerialNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td style="border: 2px solid darkgray; border-radius: 6px;
+            display: flex; justify-content: space-evenly; background: lightgray;
+            font-weight: bold;">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

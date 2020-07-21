@@ -1,0 +1,70 @@
+﻿@model COTS_Inventory.Models.Product
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h4>Products</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SV_Id" class="control-label">Vendor</label>
+                <select asp-for="SV_Id" asp-items="(SelectList)ViewBag.VendorSelectList"></select>
+                <span asp-validation-for="SV_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Version" class="control-label"></label>
+                <input asp-for="Version" class="form-control" />
+                <span asp-validation-for="Version" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorCatNum" class="control-label">Vendor Category Number</label>
+                <input asp-for="VendorCatNum" class="form-control" />
+                <span asp-validation-for="VendorCatNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NPRClassification" class="control-label">NPR Classification</label>
+                <input asp-for="NPRClassification" class="form-control" />
+                <span asp-validation-for="NPRClassification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SafetyCriticalDetermine" class="control-label">Safety Critical</label>
+                <input asp-for="SafetyCriticalDetermine" class="form-control" />
+                <span asp-validation-for="SafetyCriticalDetermine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

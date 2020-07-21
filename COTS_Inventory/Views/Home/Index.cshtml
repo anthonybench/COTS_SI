@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div>
+        <h1 style="text-align: center;">Quick Start Guide</h1>
+
+        <h2>General</h2>
+        <p style="border-bottom: 2px solid lightgrey; padding-bottom: 5px;">
+            This application provides an intuitive visual interface for viewing and maintaining the <em>Commercial Off-The-Shelf</em> (COTS) <em>Software Inventory</em>. <br />
+            Immediately below is an important note about how this application maintains referenctial integrity by virtue of <em>cascade deletion</em>, which one <br />
+            must be aware of in order to enter data effectively. Following that are detailed summaries of each table contained in the database. For a <br />
+            more techinical description of this application, pertinant information regarding it's maintenence, and contact information for it's author, <br />
+            please see <strong>README.md</strong> located in the source-root.
+        </p>
+
+        <br />
+
+        <h3>Cascade Deletion Map</h3>
+        <p>
+            Here, a map shows the deletion behavior when a <em>principal entity</em> is deleted. <br />
+            If you delete an entry that other entries depended on (pointed to via FK's), <br />
+            those <em>dependant entities</em> will be deleted as well to avoid holes in the database. <br />
+            Likewise, if you wish to add an entry that points to a <em>principal</em> entry, make sure <br />
+            that entry exists first. Guards will prevent you from adding invalid null pointers.
+        </p>
+        @* TODO insert cascade deletion map on LucidChart *@
+        <img src="~/img/Deletion-Map-2.png" class="img-fluid" style="border: 3px solid black; border-radius: 10px;" alt="Cascade Deletion Map" height="425" width="550">
+
+        <br /><br /><br />
+
+        <h3>Client Machines</h3>
+        <p>
+            An interface for adding and removing client machines that hold our software products.<br />
+
+            <ul>
+                <li>Id [int]</li>
+                <li>Name [varchar(64)]</li>
+                <li>Location [varchar(25)]</li>
+                <li>Owner [varchar(30)]</li>
+                <li>ITSecurityPlan [varchar(30)] <strong>(optional)</strong></li>
+                <li>Active [varchar(10)] <strong>(optional)</strong></li>
+            </ul>
+        </p>
+
+        <br />
+
+        <h3>Installs</h3>
+        <p>
+            An interface for adding and removing our current software installations.<br />
+            <em>(Dependants: Client Machine, SoftWare License)</em>
+            <ul>
+                <li>Id [int]</li>
+                <li>CM_Id [int]</li>
+                <li>SL_Id [int]</li>
+                <li>SerialNumber [int] <strong>(optional)</strong></li>
+                <li>Comment [text] <strong>(optional)</strong></li>
+            </ul>
+        </p>
+
+        <br />
+
+        <h3>Licenses</h3>
+        <p>
+            An interface for adding and removing our current software licenses.<br />
+            <em>(Dependants: Software Product)</em>
+            <ul>
+                <li>Id [int]</li>
+                <li>SP_Id [int]</li>
+                <li>Type [varchar(25)]</li>
+                <li>Servicer [varchar(30)]</li>
+                <li>NumOfInstalls [int] <strong>(optional)</strong></li>
+                <li>Cost [varchar(25)]</li>
+                <li>ExpireDate [DateTime]</li>
+                <li>PurchaseOrderNum [varchar(25)] <strong>(optional)</strong></li>
+                <li>MRNumber [varchar(25)] <strong>(optional)</strong></li>
+                <li>PurchaseAgent [varchar(30)] <strong>(optional)</strong></li>
+                <li>Owner [varchar(30)]</li>
+                <li>OwnerEmail [varchar(50)] <strong>(optional)</strong></li>
+                <li>ActivationWebsite [varchar(50)] <strong>(optional)</strong></li>
+                <li>ContractNumber [varchar(50)]</li>
+                <li>Comment [varchar(MAX)] <strong>(optional)</strong></li>
+            </ul>
+        </p>
+
+        <br />
+
+        <h3>Products</h3>
+        <p>
+            An interface for adding and removing our currently owned software products.<br />
+            <em>(Dependants: Software Vendor)</em>
+            <ul>
+                <li>Id [int]</li>
+                <li>SV_Id [int]</li>
+                <li>Name [varchar(25)]</li>
+                <li>Version [varchar(20)]</li>
+                <li>VendorCatNum [varchar(20)] <strong>(optional)</strong></li>
+                <li>Description [varchar(100)]</li>
+                <li>NPRClassification [varchar(25)] <strong>(optional)</strong></li>
+                <li>SafetyCriticalDetermin [varchar(10)] <strong>(optional)</strong></li>
+            </ul>
+        </p>
+
+        <br />
+
+        <h3>Vendors</h3>
+        <p>
+            An interface for adding and removing vendors of our various software licenses.<br />
+
+            <ul>
+                <li>Id [int]</li>
+                <li>Name [varchar(100)]</li>
+                <li>Phone [varchar(20)] <strong>(optional)</strong></li>
+                <li>Email [varchat(50)] <strong>(optional)</strong></li>
+                <li>Website [varchat(50)] <strong>(optional)</strong></li>
+                <li>CustomerRep [varchat(50)] <strong>(optional)</strong></li>
+            </ul>
+        </p>
+
+        <br />
+
+        <h3>Test Results</h3>
+        <p>
+            An interface for adding and removing test results for our licensed softwares.<br />
+            <em>(Dependants: Software Product)</em>
+            <ul>
+                <li>Id [int]</li>
+                <li>SP_Id [int]</li>
+                <li>TestPlan [varchar(25)] <strong>(optional)</strong></li>
+                <li>WADocument [varchar(25)]</li>
+                <li>TestDate [DateTime]</li>
+                <li>PassResult [varchar(MAX)] <strong>(optional)</strong></li>
+            </ul>
+        </p>
+
+        <br /><br />
+
+        <h3 style="border-top: 2px solid lightgrey;">Traceability</h3>
+        <p>
+            This application implements NPR 7150.2C SWE-027 for <em>Stennis Space Center.</em> <br />
+            Refer to NODIS for latest version of applicable requirements. <br />
+            Section 3.1.14 -
+            <a href="https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7150_002C_&page_name=Chapter3">
+                NODIS 3.1.14
+            </a>
+        </p>
+    </div>

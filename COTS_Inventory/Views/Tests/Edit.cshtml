@@ -1,0 +1,61 @@
+﻿@model COTS_Inventory.Models.Test
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div>@TempData["Message"]</div>
+    </div>
+}
+
+<h4>Test Results</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SP_Id" class="control-label">Product</label>
+                <select asp-for="SP_Id" asp-items="(SelectList)ViewBag.ProductSelectList"></select>
+                <span asp-validation-for="SP_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestPlan" class="control-label">Test Plan</label>
+                <input asp-for="TestPlan" class="form-control" />
+                <span asp-validation-for="TestPlan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WEDocument" class="control-label">WE Document</label>
+                <input asp-for="WEDocument" class="form-control" />
+                <span asp-validation-for="WEDocument" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestDate" class="control-label">Test Date</label>
+                <input asp-for="TestDate" class="form-control" />
+                <span asp-validation-for="TestDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PassResult" class="control-label">Pass Result</label>
+                <input asp-for="PassResult" class="form-control" />
+                <span asp-validation-for="PassResult" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
