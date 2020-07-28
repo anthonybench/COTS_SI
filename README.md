@@ -101,6 +101,7 @@ Another framework built on top of `.NET Core` for querying the database directly
 * **EF Tutorials** - https://docs.microsoft.com/en-us/ef/
 * **LINQ Docs** - https://docs.microsoft.com/en-us/dotnet/standard/using-linq
 * **EF Migrations** - https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+* **Overposting attack protections for `Create` and `Edit` *POST* action methods** - http://go.microsoft.com/fwlink/?LinkId=317598
 
 
 Project References

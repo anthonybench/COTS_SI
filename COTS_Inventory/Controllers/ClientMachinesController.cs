@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using COTS_Inventory.Data;
 using COTS_Inventory.Models;
 
+// Note on `Create` and `Edit` POST action methods:
+// To protect from overposting attacks, enable the specific properties you want to bind to, for 
+// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
 namespace COTS_Inventory.Controllers
 {
     public class ClientMachinesController : Controller
@@ -50,8 +54,6 @@ namespace COTS_Inventory.Controllers
         }
 
         // POST: ClientMachines/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Location,Owner,ITSecurityPlan,Active")] ClientMachine clientMachine)
@@ -83,8 +85,6 @@ namespace COTS_Inventory.Controllers
         }
 
         // POST: ClientMachines/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Location,Owner,ITSecurityPlan,Active")] ClientMachine clientMachine)

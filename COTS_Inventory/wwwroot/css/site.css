@@ -6,24 +6,26 @@
 ============================================*/
 
 
-/* general selectors
--------------------------------------------------- */
+/* Navbar Links */
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
 
+/* All Links */
 a {
   color: #0366d6;
 }
 
+/* Bootstrap Override */
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
 
+/* Nav Rules */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
@@ -31,8 +33,7 @@ a {
 }
 
 
-/* accent rules
--------------------------------------------------- */
+/* Responsive */
 html {
   font-size: 14px;
 }
@@ -42,35 +43,34 @@ html {
   }
 }
 
+/* Accent Bordering */
 .border-top {
   border-top: 1px solid #000;
 }
 .border-bottom {
   border-bottom: 1px solid #000;
 }
-
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .10);
 }
 
+/* About Button-link */
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
 }
 
-
-/* sticky rules
--------------------------------------------------- */
+/* Document Rules */
 html {
   position: relative;
   min-height: 100%;
 }
-
 body {
     margin-bottom: 60px;
     background-color: #f5f5f5;
 }
 
+/* Footer Alignment */
 .footer {
     position: absolute;
     bottom: 0;
@@ -80,6 +80,7 @@ body {
     background-color: #fff;
 }
 
+/* Cascae Map*/
 .map {
     border: 3px solid black;
     border-radius: 3px;
