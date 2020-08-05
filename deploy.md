@@ -1,30 +1,26 @@
 # Deployment Information
 ### *Address to the database server found in the JSON object `ConnectionStrings` in `appsettings.json`*
 ### Previous App-Version Live URL *https://sscsdcweb-dev.ndc.nasa.gov/cotssi/*
-### Application File Host *`\\sscsdcweb-dev\inetpub\sscsdcweb-dev\COTSSI`*
 
 <br /><br />
 
 ## **Local Database Instance**
 
 This App-Version `ConnectionString` <br />
-*"COTSContext": "Server=(localdb)\\mssqllocaldb;Database=COTSContext;Trusted_Connection=True;MultipleActiveResultSets=true"*
+*"COTSContext": "Server=(localdb)\\mssqllocaldb;Database=cotssi_dev;Trusted_Connection=True;MultipleActiveResultSets=true"*
 
 <br />
 
 ## **Database Server Details**
 
 Database Server Address: <br/>
-> *sscsdcdb1-dev.ndc.nasa.gov,14344*
+> *none*
 
 Database Name: <br />
 > cotssi_dev
 
-Previous App-Version `ConnectionString`: <br />
-> *connectionString="Data Source=sscsdcdb1-dev.ndc.nasa.gov,14344;Initial Catalog=cotssi_dev;Integrated Security=True"*
-
 This App-Version `ConnectionString`: <br />
-> *"COTSContext": "Server=sscsdcdb1-dev.ndc.nasa.gov,14344;Database=cotssi_dev;Trusted_Connection=True;MultipleActiveResultSets=true;Integrated Security=True"*
+> *None*
 
 <br />
 

@@ -1,6 +1,5 @@
 ﻿# COTS Software Inventory Management Application
-## Developed by _Isaac Yep_; Mentored by _Alex Elliot_ and _Mark Turowski_
--- _NASA, Stennis Space Center; June 2020_
+## Developed by _Isaac Yep_
 
 <br>
 
@@ -103,13 +102,6 @@ Another framework built on top of `.NET Core` for querying the database directly
 * **Overposting Attack Protections for `Edit` and `Create` *POST* Action Methods** - http://go.microsoft.com/fwlink/?LinkId=317598.
 * **HTTPS Enforcement** - https://aka.ms/aspnetcore-hsts
 * **Deployment Docs** - https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis
-
-Project References
-================
-* Kristopher Mobbs -- application design
-* Charles Broussard -- database server admin
-* Mark Turowski -- application requirement supervisor
-* Alex Elliot -- development supervisor
 
 
 Terms
