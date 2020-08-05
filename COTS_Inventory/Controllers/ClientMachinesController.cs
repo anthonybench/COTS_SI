@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using COTS_Inventory.Data;
 using COTS_Inventory.Models;
 
-// Note on `Create` and `Edit` POST action methods:
+// Note for `Edit` and `Create` POST methods:
 // To protect from overposting attacks, enable the specific properties you want to bind to, for 
 // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
@@ -26,7 +26,7 @@ namespace COTS_Inventory.Controllers
         // GET: ClientMachines
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ClientMachine.ToListAsync());
+            return View(await _context.ClientMachines.ToListAsync());
         }
 
         // GET: ClientMachines/Details/5
@@ -37,7 +37,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var clientMachine = await _context.ClientMachine
+            var clientMachine = await _context.ClientMachines
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (clientMachine == null)
             {
@@ -76,7 +76,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var clientMachine = await _context.ClientMachine.FindAsync(id);
+            var clientMachine = await _context.ClientMachines.FindAsync(id);
             if (clientMachine == null)
             {
                 return NotFound();
@@ -127,7 +127,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var clientMachine = await _context.ClientMachine
+            var clientMachine = await _context.ClientMachines
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (clientMachine == null)
             {
@@ -142,8 +142,8 @@ namespace COTS_Inventory.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var clientMachine = await _context.ClientMachine.FindAsync(id);
-            _context.ClientMachine.Remove(clientMachine);
+            var clientMachine = await _context.ClientMachines.FindAsync(id);
+            _context.ClientMachines.Remove(clientMachine);
             await _context.SaveChangesAsync();
             TempData["Message"] = "Entry successfully deleted!";
             return RedirectToAction(nameof(Index));
@@ -152,7 +152,7 @@ namespace COTS_Inventory.Controllers
         // Utility Function
         private bool ClientMachineExists(int id)
         {
-            return _context.ClientMachine.Any(e => e.Id == id);
+            return _context.ClientMachines.Any(e => e.Id == id);
         }
     }
 }

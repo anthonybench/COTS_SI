@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using COTS_Inventory.Data;
 using COTS_Inventory.Models;
 
-// Note on `Create` and `Edit` POST action methods:
+// Note for `Edit` and `Create` POST methods:
 // To protect from overposting attacks, enable the specific properties you want to bind to, for 
 // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
@@ -26,7 +26,7 @@ namespace COTS_Inventory.Controllers
         // GET: Licenses
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Licence.ToListAsync());
+            return View(await _context.Licenses.ToListAsync());
         }
 
         // GET: Licenses/Details/5
@@ -37,7 +37,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var license = await _context.Licence
+            var license = await _context.Licenses
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (license == null)
             {
@@ -60,7 +60,7 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Create([Bind("Id,SP_Id,Type,Servicer,NumOfInstalls,Cost,ExpireDate,PurchaseOrderNum,MRNumber,PurchaseAgent,Owner,OwnerEmail,ActivationWebsite,ContractNumber,Comment")] License license)
         {
             // invalid principal guard
-            var parentProductExists = _context.Product.Any(p => p.Id == license.SP_Id);
+            var parentProductExists = _context.Products.Any(p => p.Id == license.SP_Id);
             if (!parentProductExists)
             {
                 TempData["Message"] = "Parent product-Id entered not found, please enter corresponding `product` first.";
@@ -87,7 +87,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var license = await _context.Licence.FindAsync(id);
+            var license = await _context.Licenses.FindAsync(id);
             if (license == null)
             {
                 return NotFound();
@@ -103,7 +103,7 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,SP_Id,Type,Servicer,NumOfInstalls,Cost,ExpireDate,PurchaseOrderNum,MRNumber,PurchaseAgent,Owner,OwnerEmail,ActivationWebsite,ContractNumber,Comment")] License license)
         {
             // invalid principal guard
-            var parentProductExists = _context.Product.Any(p => p.Id == license.SP_Id);
+            var parentProductExists = _context.Products.Any(p => p.Id == license.SP_Id);
             if (!parentProductExists)
             {
                 TempData["Message"] = "Parent product-Id entered not found, please enter corresponding `product` first.";
@@ -145,7 +145,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var license = await _context.Licence
+            var license = await _context.Licenses
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (license == null)
             {
@@ -160,8 +160,8 @@ namespace COTS_Inventory.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var license = await _context.Licence.FindAsync(id);
-            _context.Licence.Remove(license);
+            var license = await _context.Licenses.FindAsync(id);
+            _context.Licenses.Remove(license);
             await _context.SaveChangesAsync();
             TempData["Message"] = "Entry successfully deleted!";
             return RedirectToAction(nameof(Index));
@@ -170,12 +170,12 @@ namespace COTS_Inventory.Controllers
         // Utility Functions
         private bool LicenseExists(int id)
         {
-            return _context.Licence.Any(e => e.Id == id);
+            return _context.Licenses.Any(e => e.Id == id);
         }
 
         public void GetProductList()
         {
-            ViewBag.ProductSelectList = new SelectList(_context.Product
+            ViewBag.ProductSelectList = new SelectList(_context.Products
                 .OrderBy(p => p.Id)
                 .ToList(), "Id", "Name");
         }

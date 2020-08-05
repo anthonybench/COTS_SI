@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using COTS_Inventory.Data;
 using COTS_Inventory.Models;
 
-// Note on `Create` and `Edit` POST action methods:
+// Note for `Edit` and `Create` POST methods:
 // To protect from overposting attacks, enable the specific properties you want to bind to, for 
 // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
@@ -26,7 +26,7 @@ namespace COTS_Inventory.Controllers
         // GET: Vendors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vendor.ToListAsync());
+            return View(await _context.Vendors.ToListAsync());
         }
 
         // GET: Vendors/Details/5
@@ -37,7 +37,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var vendor = await _context.Vendor
+            var vendor = await _context.Vendors
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vendor == null)
             {
@@ -76,7 +76,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var vendor = await _context.Vendor.FindAsync(id);
+            var vendor = await _context.Vendors.FindAsync(id);
             if (vendor == null)
             {
                 return NotFound();
@@ -127,7 +127,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var vendor = await _context.Vendor
+            var vendor = await _context.Vendors
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vendor == null)
             {
@@ -142,8 +142,8 @@ namespace COTS_Inventory.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vendor = await _context.Vendor.FindAsync(id);
-            _context.Vendor.Remove(vendor);
+            var vendor = await _context.Vendors.FindAsync(id);
+            _context.Vendors.Remove(vendor);
             await _context.SaveChangesAsync();
             TempData["Message"] = "Entry successfully deleted!";
             return RedirectToAction(nameof(Index));
@@ -152,7 +152,7 @@ namespace COTS_Inventory.Controllers
         // Utility Function
         private bool VendorExists(int id)
         {
-            return _context.Vendor.Any(e => e.Id == id);
+            return _context.Vendors.Any(e => e.Id == id);
         }
     }
 }

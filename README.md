@@ -29,11 +29,10 @@ COTS is an internal intranet-hosted tool with the following features:
 * Generate reports detailing info for licenses set to expire "soon" (specified by user)
 * Generate reports detailing utilization of a license, meaning number of remaining installations
 * Generate reports detailing {date, time, location, results} of most recent tests performed on each installation
-* Any given license number can't be installed on 2 separate machines
 * Generate email to responsible party {90, 60, 30} days before expiration
 
 ## Schema
-**ClientMachine**
+**ClientMachines**
 * Id [int] **\<Pk>**
 * Name [varchar(64)]
 * Location [varchar(25)]
@@ -41,14 +40,14 @@ COTS is an internal intranet-hosted tool with the following features:
 * ITSecurityPlan [varchar(30)] (nullable)
 * Active [varchar(10)] (nullable)
 
-**Install**
+**Installs**
 * Id [int] **\<Pk>**
 * CM_Id [int] **\<Fk>**
 * SL_Id [int] **\<Fk>**
 * SerialNumber [int] (nullable)
 * Comment [varchar(MAX)] (nullable)
 
-**Licence**
+**Licenses**
 * Id [int] **\<Pk>**
 * SP_Id [int] **\<Fk>**
 * Type [varchar(25)]
@@ -65,7 +64,7 @@ COTS is an internal intranet-hosted tool with the following features:
 * ContractNumber [varchar(50)]
 * Comment [varchar(MAX)] (nullable)
 
-**Product**
+**Products**
 * Id [int] **\<Pk>**
 * SV_Id [int] **\<Fk>**
 * Name [varchar(25)]
@@ -75,7 +74,7 @@ COTS is an internal intranet-hosted tool with the following features:
 * NPRClassification [varchar(25)] (nullable)
 * SafetyCriticalDetermin [varchar(10)] (nullable)
 
-**Vendor**
+**Vendors**
 * Id [int] **\<Pk>**
 * Name [varchar(100)]
 * Phone [varchar(20)] (nullable)
@@ -83,7 +82,7 @@ COTS is an internal intranet-hosted tool with the following features:
 * Website [varchat(50)] (nullable)
 * Customer_Rep [varchat(50)] (nullable)
 
-**Test**
+**Tests**
 * Id [int] **\<Pk>**
 * SP_Id [int] **\<Fk>**
 * TestPlan [varchar(25)] (nullable)
@@ -101,16 +100,16 @@ Another framework built on top of `.NET Core` for querying the database directly
 * **EF Tutorials** - https://docs.microsoft.com/en-us/ef/
 * **LINQ Docs** - https://docs.microsoft.com/en-us/dotnet/standard/using-linq
 * **EF Migrations** - https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
-* **Overposting attack protections for `Create` and `Edit` *POST* action methods** - http://go.microsoft.com/fwlink/?LinkId=317598
-
+* **Overposting Attack Protections for `Edit` and `Create` *POST* Action Methods** - http://go.microsoft.com/fwlink/?LinkId=317598.
+* **HTTPS Enforcement** - https://aka.ms/aspnetcore-hsts
+* **Deployment Docs** - https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis
 
 Project References
 ================
-* Kristopher Mobbs -- general COTS assistance
-* Charles Broussard -- database server manager
-* Mark Turowski -- general COTS assistance
-* John Pitalo -- installations
-* Alex Elliot -- general COTS assistance
+* Kristopher Mobbs -- application design
+* Charles Broussard -- database server admin
+* Mark Turowski -- application requirement supervisor
+* Alex Elliot -- development supervisor
 
 
 Terms
@@ -123,6 +122,6 @@ Terms
 * SWE | SoftWare Engineering
 
 
-Original Author
+Application & Documentation Author
 ================
-Isaac Yep : https://www.linkedin.com/in/anthonybench/
+Isaac Yep - https://www.linkedin.com/in/anthonybench/

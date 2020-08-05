@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace COTS_Inventory.Migrations
 {
     [DbContext(typeof(COTSContext))]
-    [Migration("20200721205107_InitializeDB")]
-    partial class InitializeDB
+    [Migration("20200805205700_typo_fix")]
+    partial class typo_fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,7 +53,7 @@ namespace COTS_Inventory.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ClientMachine");
+                    b.ToTable("ClientMachines");
                 });
 
             modelBuilder.Entity("COTS_Inventory.Models.Install", b =>
@@ -81,7 +81,7 @@ namespace COTS_Inventory.Migrations
 
                     b.HasIndex("SL_Id");
 
-                    b.ToTable("Install");
+                    b.ToTable("Installs");
                 });
 
             modelBuilder.Entity("COTS_Inventory.Models.License", b =>
@@ -153,7 +153,7 @@ namespace COTS_Inventory.Migrations
 
                     b.HasIndex("SP_Id");
 
-                    b.ToTable("Licence");
+                    b.ToTable("Licenses");
                 });
 
             modelBuilder.Entity("COTS_Inventory.Models.Product", b =>
@@ -197,7 +197,7 @@ namespace COTS_Inventory.Migrations
 
                     b.HasIndex("SV_Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("COTS_Inventory.Models.Test", b =>
@@ -230,7 +230,7 @@ namespace COTS_Inventory.Migrations
 
                     b.HasIndex("SP_Id");
 
-                    b.ToTable("Test");
+                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("COTS_Inventory.Models.Vendor", b =>
@@ -263,7 +263,7 @@ namespace COTS_Inventory.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vendor");
+                    b.ToTable("Vendors");
                 });
 
             modelBuilder.Entity("COTS_Inventory.Models.Install", b =>

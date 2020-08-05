@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using COTS_Inventory.Data;
 using COTS_Inventory.Models;
 
-// Note on `Create` and `Edit` POST action methods:
+// Note for `Edit` and `Create` POST methods:
 // To protect from overposting attacks, enable the specific properties you want to bind to, for 
 // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
@@ -26,7 +26,7 @@ namespace COTS_Inventory.Controllers
         // GET: Installs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Install.ToListAsync());
+            return View(await _context.Installs.ToListAsync());
         }
 
         // GET: Installs/Details/5
@@ -37,7 +37,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var install = await _context.Install
+            var install = await _context.Installs
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (install == null)
             {
@@ -61,8 +61,8 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Create([Bind("Id,CM_Id,SL_Id,SerialNumber,Comment")] Install install)
         {
             // invalid principal guard
-            var parentMachineExists = _context.ClientMachine.Any(cm => cm.Id == install.CM_Id);
-            var parentLicenseExists = _context.Licence.Any(l => l.Id == install.SL_Id);
+            var parentMachineExists = _context.ClientMachines.Any(cm => cm.Id == install.CM_Id);
+            var parentLicenseExists = _context.Licenses.Any(l => l.Id == install.SL_Id);
             if (!parentMachineExists)
             {
                 TempData["Message"] = "Parent machine-Id entered not found, please enter corresponding `client machine` first.";
@@ -94,7 +94,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var install = await _context.Install.FindAsync(id);
+            var install = await _context.Installs.FindAsync(id);
             if (install == null)
             {
                 return NotFound();
@@ -111,8 +111,8 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,CM_Id,SL_Id,SerialNumber,Comment")] Install install)
         {
             // invalid principal guard
-            var parentMachineExists = _context.ClientMachine.Any(cm => cm.Id == install.CM_Id);
-            var parentLicenseExists = _context.Licence.Any(l => l.Id == install.SL_Id);
+            var parentMachineExists = _context.ClientMachines.Any(cm => cm.Id == install.CM_Id);
+            var parentLicenseExists = _context.Licenses.Any(l => l.Id == install.SL_Id);
             if (!parentMachineExists)
             {
                 TempData["Message"] = "Parent machine-Id entered not found, please enter corresponding `client machine` first.";
@@ -159,7 +159,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var install = await _context.Install
+            var install = await _context.Installs
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (install == null)
             {
@@ -174,8 +174,8 @@ namespace COTS_Inventory.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var install = await _context.Install.FindAsync(id);
-            _context.Install.Remove(install);
+            var install = await _context.Installs.FindAsync(id);
+            _context.Installs.Remove(install);
             await _context.SaveChangesAsync();
             TempData["Message"] = "Entry successfully deleted!";
             return RedirectToAction(nameof(Index));
@@ -184,19 +184,19 @@ namespace COTS_Inventory.Controllers
         // Utility Functions
         private bool InstallExists(int id)
         {
-            return _context.Install.Any(e => e.Id == id);
+            return _context.Installs.Any(e => e.Id == id);
         }
 
         public void GetClientMachineList()
         {
-            ViewBag.ClientMachineSelectList = new SelectList(_context.ClientMachine
+            ViewBag.ClientMachineSelectList = new SelectList(_context.ClientMachines
                 .OrderBy(cm => cm.Id)
                 .ToList(), "Id", "Name");
         }
 
         public void GetLicenseList()
         {
-            ViewBag.LicenseSelectList = new SelectList(_context.Licence
+            ViewBag.LicenseSelectList = new SelectList(_context.Licenses
                 .OrderBy(l => l.Id)
                 .ToList(), "Id", "Id");
         }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using COTS_Inventory.Data;
 using COTS_Inventory.Models;
 
-// Note on `Create` and `Edit` POST action methods:
+// Note for `Edit` and `Create` POST methods:
 // To protect from overposting attacks, enable the specific properties you want to bind to, for 
 // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
@@ -26,7 +26,7 @@ namespace COTS_Inventory.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            return View(await _context.Products.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -37,7 +37,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -60,7 +60,7 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Create([Bind("Id,SV_Id,Name,Version,VendorCatNum,Description,NPRClassification,SafetyCriticalDetermine")] Product product)
         {
             // invalid principal guard
-            var parentVendorExists = _context.Vendor.Any(v => v.Id == product.SV_Id);
+            var parentVendorExists = _context.Vendors.Any(v => v.Id == product.SV_Id);
             if (!parentVendorExists)
             {
                 TempData["Message"] = "Parent vendor-Id entered not found, please enter corresponding `vendor` first.";
@@ -87,7 +87,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -103,7 +103,7 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,SV_Id,Name,Version,VendorCatNum,Description,NPRClassification,SafetyCriticalDetermine")] Product product)
         {
             // invalid principal guard
-            var parentVendorExists = _context.Vendor.Any(v => v.Id == product.SV_Id);
+            var parentVendorExists = _context.Vendors.Any(v => v.Id == product.SV_Id);
             if (!parentVendorExists)
             {
                 TempData["Message"] = "Parent vendor-Id entered not found, please enter corresponding `vendor` first.";
@@ -145,7 +145,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -160,8 +160,8 @@ namespace COTS_Inventory.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
+            var product = await _context.Products.FindAsync(id);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             TempData["Message"] = "Entry successfully deleted!";
             return RedirectToAction(nameof(Index));
@@ -170,12 +170,12 @@ namespace COTS_Inventory.Controllers
         // Utiltiy Functions
         private bool ProductExists(int id)
         {
-            return _context.Product.Any(e => e.Id == id);
+            return _context.Products.Any(e => e.Id == id);
         }
 
         public void GetVendorList()
         {
-            ViewBag.VendorSelectList = new SelectList(_context.Vendor
+            ViewBag.VendorSelectList = new SelectList(_context.Vendors
                 .OrderBy(v => v.Id)
                 .ToList(), "Id", "Name");
         }

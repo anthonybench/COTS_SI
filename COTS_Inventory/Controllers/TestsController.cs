@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using COTS_Inventory.Data;
 using COTS_Inventory.Models;
 
-// Note on `Create` and `Edit` POST action methods:
+// Note for `Edit` and `Create` POST methods:
 // To protect from overposting attacks, enable the specific properties you want to bind to, for 
 // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
@@ -26,7 +26,7 @@ namespace COTS_Inventory.Controllers
         // GET: Tests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Test.ToListAsync());
+            return View(await _context.Tests.ToListAsync());
         }
 
         // GET: Tests/Details/5
@@ -37,7 +37,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var test = await _context.Test
+            var test = await _context.Tests
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (test == null)
             {
@@ -60,7 +60,7 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Create([Bind("Id,SP_Id,TestPlan,WEDocument,TestDate,PassResult")] Test test)
         {
             // invalid principal guard
-            var parentProductExists = _context.Product.Any(p => p.Id == test.SP_Id);
+            var parentProductExists = _context.Products.Any(p => p.Id == test.SP_Id);
             if (!parentProductExists)
             {
                 TempData["Message"] = "Parent product-Id entered not found, please enter corresponding `product` first.";
@@ -87,7 +87,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var test = await _context.Test.FindAsync(id);
+            var test = await _context.Tests.FindAsync(id);
             if (test == null)
             {
                 return NotFound();
@@ -103,7 +103,7 @@ namespace COTS_Inventory.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,SP_Id,TestPlan,WEDocument,TestDate,PassResult")] Test test)
         {
             // invalid principal guard
-            var parentProductExists = _context.Product.Any(p => p.Id == test.SP_Id);
+            var parentProductExists = _context.Products.Any(p => p.Id == test.SP_Id);
             if (!parentProductExists)
             {
                 TempData["Message"] = "Parent product-Id entered not found, please enter corresponding `product` first.";
@@ -145,7 +145,7 @@ namespace COTS_Inventory.Controllers
                 return NotFound();
             }
 
-            var test = await _context.Test
+            var test = await _context.Tests
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (test == null)
             {
@@ -160,8 +160,8 @@ namespace COTS_Inventory.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var test = await _context.Test.FindAsync(id);
-            _context.Test.Remove(test);
+            var test = await _context.Tests.FindAsync(id);
+            _context.Tests.Remove(test);
             await _context.SaveChangesAsync();
             TempData["Message"] = "Entry successfully deleted!";
             return RedirectToAction(nameof(Index));
@@ -170,12 +170,12 @@ namespace COTS_Inventory.Controllers
         // Utility Functions
         private bool TestExists(int id)
         {
-            return _context.Test.Any(e => e.Id == id);
+            return _context.Tests.Any(e => e.Id == id);
         }
 
         public void GetProductList()
         {
-            ViewBag.ProductSelectList = new SelectList(_context.Product
+            ViewBag.ProductSelectList = new SelectList(_context.Products
                 .OrderBy(p => p.Id)
                 .ToList(), "Id", "Name");
         }

@@ -32,7 +32,6 @@ a {
   border-color: #1861ac;
 }
 
-
 /* Responsive */
 html {
   font-size: 14px;
@@ -80,7 +79,7 @@ body {
     background-color: #fff;
 }
 
-/* Cascae Map*/
+/* Cascade Map */
 .map {
     border: 3px solid black;
     border-radius: 3px;
