@@ -1,149 +1,19 @@
-﻿# COTS Software Inventory Management Application
-## Developed by _Isaac Yep_
-
-<br>
-
-Tech Stack
-================
-* `SQL Server Management Studio` for database exploration
-* `Siteminder SSO` for Authentication
-* `VS Code` recommended for *markdown* editing
-* `Visual Studio 2019` for development
-  * ASP.NET Core Support (web development)
-
-_**Note**: An understanding of web application design architecture, and primarily `C#` and Visual Studio build tools for `.NET core` is pre-required. Please ensure that you are viewing this document in a `markdown` viewer. For `VS Code`, enter **\<ctrl> k v** while focused on this document._
-
-
-Overview
-================
-## Purpose
-Software liscence/invetory management is currently done by spreadsheets.
-This is inefficient and not un-scalable! Thus the application COTS was requested.
-COTS is an internal intranet-hosted tool with the following features:
-* Database interface for vendor {id, name, phone number, email, website}
-* Database interface for product {id, version, description, classification}
-* Database interface for license {id, terms, procurement, ownership}
-* Database interface for software installation {client machine, id, location, owner, product key, IT security plan, active status}
-* General Interface for {searching, sorting, creating, updating, deleting} entries
-* Generate reports detailing info for licenses set to expire "soon" (specified by user)
-* Generate reports detailing utilization of a license, meaning number of remaining installations
-* Generate reports detailing {date, time, location, results} of most recent tests performed on each installation
-* Generate email to responsible party {90, 60, 30} days before expiration
-
-## Schema
-**ClientMachines**
-* Id [int] **\<Pk>**
-* Name [varchar(64)]
-* Location [varchar(25)]
-* Owner [varchar(30)]
-* ITSecurityPlan [varchar(30)] (nullable)
-* Active [varchar(10)] (nullable)
-
-**Installs**
-* Id [int] **\<Pk>**
-* CM_Id [int] **\<Fk>**
-* SL_Id [int] **\<Fk>**
-* SerialNumber [int] (nullable)
-* Comment [varchar(MAX)] (nullable)
-
-**Licenses**
-* Id [int] **\<Pk>**
-* SP_Id [int] **\<Fk>**
-* Type [varchar(25)]
-* Servicer [varchar(30)]
-* NumOfInstalls [int] (nullable)
-* Cost [varchar(25)]
-* ExpireDate [DateTime]
-* PurchaseOrderNum [varchar(25)] (nullable)
-* MRNumber [varchar(25)] (nullable)
-* PurchaseAgent [varchar(30)] (nullable)
-* Owner [varchar(30)]
-* OwnerEmail [varchar(50)] (nullable)
-* ActivationWebsite [varchar(50)] (nullable)
-* ContractNumber [varchar(50)]
-* Comment [varchar(MAX)] (nullable)
-
-**Products**
-* Id [int] **\<Pk>**
-* SV_Id [int] **\<Fk>**
-* Name [varchar(25)]
-* Version [varchar(20)]
-* VendorCatNum [varchar(20)] (nullable)
-* Description [varchar(100)]
-* NPRClassification [varchar(25)] (nullable)
-* SafetyCriticalDetermin [varchar(10)] (nullable)
-
-**Vendors**
-* Id [int] **\<Pk>**
-* Name [varchar(100)]
-* Phone [varchar(20)] (nullable)
-* Email [varchat(50)] (nullable)
-* Website [varchat(50)] (nullable)
-* Customer_Rep [varchat(50)] (nullable)
-
-**Tests**
-* Id [int] **\<Pk>**
-* SP_Id [int] **\<Fk>**
-* TestPlan [varchar(25)] (nullable)
-* WADocument [varchar(25)]
-* TestDate [DateTime]
-* PassResult [varchar(MAX)] (nullable)
-
-About `ASP.NET Core`
-================
-If you are new to Microsoft's `.NET` framework, here is a short primer and list of references to make maintenance and development easier. <br /><br />
-This application uses the *model-view-controller* design pattern, and each `SQL Server` table has it's own model, controller, and view directory containing the views for it's own *Index*, *Create*, *Detail*, and *Delete* functionalities. This application's home page will repeat some of the information in this document, for convenience. <br /><br />
-To modify the underlying database structure, **do not** modify the database directly. `.NET Core` maintains the database through a mechanic called `Database Migrations`, which are interpreted by `Visual Studio`'s build tools from the models themselves. Therefore, the database is derived from those classes (models), which are referred to as "*Entities*", and the framework built on top of `.NET Core` for dealing with entities is called `Entity Framework (EF)`. In short, you must modify the entities and then perform a "*migration*" from the `NuGeT` package manager console. <br /><br />
-Another framework built on top of `.NET Core` for querying the database directly while writing *C#* is called `LINQ`. The proper way to check for existence or to capture database entries/properties in your source code is to use the `LINQ` query that's right for your situation. Below is a short menu of documentation to guide development. <br />
-* **.NET Core Tutorials** - https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.1
-* **EF Tutorials** - https://docs.microsoft.com/en-us/ef/
-* **LINQ Docs** - https://docs.microsoft.com/en-us/dotnet/standard/using-linq
-* **EF Migrations** - https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
-* **Overposting Attack Protections for `Edit` and `Create` *POST* Action Methods** - http://go.microsoft.com/fwlink/?LinkId=317598.
-* **HTTPS Enforcement** - https://aka.ms/aspnetcore-hsts
-* **Deployment Docs** - https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis
-
-
-Terms
-================
-* E&TD | Engineering and Test Directorate
-* SME | Software Subject Matter Expert
-* NPR | NASA Procedural Requirements
-* SOI | Stennis Operation Instruction
-* MVC | model view controller
-* SWE | SoftWare Engineering
-
-
-Application & Documentation Author
-================
-Isaac Yep - https://www.linkedin.com/in/anthonybench/
-
-
-
-
-
-<!-- ========================================================================== -->
-<!-- ========================================================================== -->
-<!-- ========================================================================== -->
-<!-- ========================================================================== -->
-
-
-# **~ooo~**
-*~ooo~*
+﻿# COTS Software Inventory
+*An inventory management intranet tool for commercial off-the-shelf software.*
 
 <br />
 
-### Welcome to ~ooo~!
+### Welcome to COTS_SI!
 <hr>
 
-This ~ooo~
+This application serves as a complete database management solution for keeping inventory of *COTS* software licenses and products. Provides convenience for viewing, editing, adding or deleting entires across it's relevant tables, and hosts a *quick-start* guide on the home page for accessible documentation.
 
 <br />
 
 ### Table of Contents 📖
 <hr>
 
-  - [Welcome](#welcome-to-~ooo~)
+  - [Welcome](#welcome-to-cots_si)
   - [**Get Started**](#get-started-)
   - [Usage](#usage-)
   - [Technologies](#technologies-)
@@ -156,37 +26,64 @@ This ~ooo~
 ### Get Started 🚀
 <hr>
 
-~ooo~
+Replace placeholder assets such as the *navbar brand* and the ***About** page icon* with any of your personal or corporate logos and information.
+
+
+
+Once the template has been tailored to meet your needs and standards, instantiate a database as either a local instance, a specific debug enviornment or a production enviornment by adjusting the connection string in `COTS_Inventory/appsettings.json`, and run
+```
+PM> Update-Database
+```
+you can now deploy a *release publish* with
+
+```
+$ dotnet publish
+```
+and you're free to add personal or company data to the manager!
 
 <br />
 
 ### Usage ⚙
 <hr>
 
-~ooo~
+Right from the home page, your given a tldr on the application's functionality and site navigation, as well as a visual map to quickly explain the [cascade deletion](https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete) functionality of *Entity Framework Core* so that automatically upheld *referential integrity* is understood by anyone responsible for data entry.
+
+![Imgur](https://i.imgur.com/kC3Zi1S.png)
+
+From the navbar header, you can navigate to the different tables, where you can manage the database safely.
+
+![Imgur](https://i.imgur.com/KjmQGmm.png)
+
+The underlying relational database managed by *Entity Framework Core* is represented in the uml below
+
+![Imgur](https://i.imgur.com/T2MI0OQ.png)
+
+Thus essentially, after personalizing the styles and corporate assets on display, your team is ready to deploy this tool onto your company's intranet and begin managing your commercial off-the-shelf software inventory with ease!
 
 <br />
 
 ### Technologies 🧰
 <hr>
 
-  - [flip.js](https://google.com)
-  - [flop.js](https://google.com)
-  - [flap.js](https://google.com)
+  - [LINQ](https://docs.microsoft.com/en-us/dotnet/standard/linq/)
+  - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/)
+  - [Microsoft SQL Server](https://docs.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver15)
+  - [Windows Authentication](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/windowsauth?view=aspnetcore-3.1&tabs=visual-studio)
+
 
 <br />
 
 ### Contribute 🤝
 <hr>
 
-~ooo~
+I'm not currently evaluating *pull requests* for merging, but will be happy to take suggestions and feedback via *pull request*. If you have constructive feedback, I'm all ears!
 
 <br />
 
 ### Acknowledgements 💙
 <hr>
 
-~ooo~
+Thanks to **NASA; Stennis Space Center** for fueling my learning of full stack applications and their deployments through my *Summer 2020 Software Engineering Internship*. Without that experience, I wouldn't be where I am today.
 
 <br />
 
@@ -194,10 +91,16 @@ This ~ooo~
 <hr>
 <!-- badge cluster -->
 
-[~ooo~](https://shields.io/)
+![GitHub](https://img.shields.io/github/license/anthonybench/COTS_SI) ![GitHub language count](https://img.shields.io/github/languages/count/anthonybench/COTS_SI) ![GitHub repo size](https://img.shields.io/github/repo-size/anthonybench/COTS_SI)
+
+Microsoft.AspNet.Mvc ![Nuget](https://img.shields.io/nuget/v/Microsoft.AspNet.Mvc)
+
+Microsoft.EntityFrameworkCore ![Nuget](https://img.shields.io/nuget/v/Microsoft.EntityFrameworkCore)
+
+LINQ ![Nuget](https://img.shields.io/nuget/v/System.Linq)
 
 <!-- / -->
-See [License](https://google.com) for the full license text.
+See [License](https://opensource.org/licenses/MIT) for the full license text.
 
 This repository was authored by *Isaac Yep*.
 

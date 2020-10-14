@@ -1,6 +1,5 @@
 # Deployment Information
 ### *Address to the database server found in the JSON object `ConnectionStrings` in `appsettings.json`*
-### Previous App-Version Live URL *https://sscsdcweb-dev.ndc.nasa.gov/cotssi/*
 
 <br /><br />
 
