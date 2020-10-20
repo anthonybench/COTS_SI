@@ -89,6 +89,9 @@ Thanks to **NASA; Stennis Space Center** for fueling my learning of full stack a
 
 ### License, Stats, Author 📜
 <hr>
+
+<img align="right" alt="example image tag" src="https://i.imgur.com/jtNwEWu.png" width="200" />
+
 <!-- badge cluster -->
 
 ![GitHub](https://img.shields.io/github/license/anthonybench/COTS_SI) ![GitHub language count](https://img.shields.io/github/languages/count/anthonybench/COTS_SI) ![GitHub repo size](https://img.shields.io/github/repo-size/anthonybench/COTS_SI)
@@ -105,5 +108,3 @@ See [License](https://opensource.org/licenses/MIT) for the full license text.
 This repository was authored by *Isaac Yep*.
 
 [Back to Table of Contents](#table-of-contents-)
-
-![Imgur](https://i.imgur.com/jtNwEWu.png)
